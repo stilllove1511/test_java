@@ -1,0 +1,39 @@
+@startuml design
+
+class ParkingLot {
+    - capacity: int
+    - vehicles: List<Vehicle>
+    + acceptVehicle(vehicle: Vehicle): bool
+    + calculateParkingFee(vehicle: Vehicle): float
+}
+
+abstract class Vehicle {
+    - plateNumber: string
+    - width: float
+    - timeIn: DateTime
+    - timeOut: DateTime
+    + constructor(plateNumber: string, width: float)
+    + getTimeIn(): DateTime
+    + getTimeOut(): DateTime
+    + setTimeOut(timeOut: DateTime)
+    + getPlateNumber(): string
+    + getWidth(): float
+}
+
+class Car {
+    - parkingPrice: float
+    + constructor(plateNumber: string)
+    + getParkingPrice(): float
+}
+
+class Bike {
+    - parkingPrice: float
+    + constructor(plateNumber: string)
+    + getParkingPrice(): float
+}
+
+ParkingLot -- Vehicle : contains >
+Vehicle <|-- Car
+Vehicle <|-- Bike
+
+@enduml
